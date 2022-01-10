@@ -2,7 +2,9 @@ import {
   FacebookAuthProvider,
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 
 class AuthService {
@@ -12,9 +14,8 @@ class AuthService {
     this.faceboockProvider = new FacebookAuthProvider();
   }
   login(providerName) {
-    const auth = this.auth;
     const provider = this.getProvider(providerName);
-    return signInWithPopup(auth, provider);
+    return signInWithPopup(this.auth, provider);
   }
 
   getProvider(providerName) {
@@ -24,6 +25,16 @@ class AuthService {
       case "Facebook":
         return this.faceboockProvider;
     }
+  }
+
+  onAuthChange(userChange) {
+    onAuthStateChanged(this.auth, (user) => {
+      userChange(user);
+    });
+  }
+
+  logout() {
+    signOut(this.auth);
   }
 }
 
