@@ -1,0 +1,34 @@
+@value makerWhite from "../../common/colors.css";
+
+.card {
+  border-radius: 1em;
+  margin: 2em;
+  display: flex;
+  flex-direction: column;
+  background-color: makerWhite;
+}
+
+.catecory {
+  align-self: flex-start;
+  background: linear-gradient(to bottom, #ffd194, #d1913c);
+  color: makerWhite;
+  margin-left: 1.5em;
+  margin-bottom: 0;
+  padding: 0.3em;
+  text-align: center;
+  border-radius: 0.5em;
+  font-size: 0.8em;
+}
+
+.img {
+  width: 100%;
+  height: 10em;
+  border-radius: 1em;
+}
+
+.title {
+  font-size: 1.5em;
+  margin-left: 0.5em;
+  margin-top: 0.5em;
+  margin-right: 1em;
+}
