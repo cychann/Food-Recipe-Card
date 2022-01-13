@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./card_detail.module.css";
 
-const CardDetail = ({ detailCard, updateDetailCard }) => {
+const CardDetail = ({ cards, detailCard, updateDetailCard }) => {
+  const titleRef = useRef();
+  const catecoryRef = useRef();
+  const userNameRef = useRef();
+  const dateRef = useRef();
+  const preparationsRef = useRef();
+  const orderRef = useRef();
   const { title, catecory, preparations, order, userName, date } = detailCard;
 
   const onChange = (event) => {
@@ -9,6 +15,7 @@ const CardDetail = ({ detailCard, updateDetailCard }) => {
       return;
     }
     event.preventDefault();
+
     updateDetailCard({
       ...detailCard,
       [event.currentTarget.name]: event.currentTarget.value,
@@ -17,39 +24,49 @@ const CardDetail = ({ detailCard, updateDetailCard }) => {
   return (
     <form className={styles.card_detail}>
       <input
+        ref={titleRef}
         type="text"
         name="title"
         className={styles.input}
-        defaultValue={title}
+        value={title}
         onChange={onChange}
       />
       <input
+        ref={catecoryRef}
         type="text"
         name="catecory"
         className={styles.input}
-        defaultValue={catecory}
+        value={catecory}
         onChange={onChange}
       />
       <input
+        ref={userNameRef}
         type="text"
         name="userName"
         className={styles.input}
-        defaultValue={userName}
+        value={userName}
         onChange={onChange}
       />
       <input
+        ref={dateRef}
         type="text"
-        name="userName"
+        name="date"
         className={styles.input}
-        defaultValue={date}
+        value={date}
         onChange={onChange}
       />
       <textarea
+        ref={preparationsRef}
         className={styles.textarea}
         name="preparations"
-        defaultValue={preparations}
+        value={preparations}
       />
-      <textarea className={styles.textarea} name="order" defaultValue={order} />
+      <textarea
+        ref={orderRef}
+        className={styles.textarea}
+        name="order"
+        value={order}
+      />
       <div className={styles.btns}>
         <button className={styles.btn}>Image</button>
         <button className={styles.btn}>Delete</button>

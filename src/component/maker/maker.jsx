@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cards from "../cards/cards";
 import CardDetail from "../card_detail/card_detail";
+import Detail from "../detail/detail";
 import Header from "../header/header";
 import styles from "./maker.module.css";
 
@@ -119,6 +120,8 @@ const Maker = ({ authService }) => {
     });
   };
 
+  useEffect(() => {}, [cards]);
+
   useEffect(() => {
     authService.onAuthChange((user) => {
       if (!user) {
@@ -139,7 +142,8 @@ const Maker = ({ authService }) => {
         </div>
         {detailCard && (
           <div className={styles.detail}>
-            <CardDetail
+            <Detail
+              cards={cards}
               detailCard={detailCard}
               updateDetailCard={updateDetailCard}
             />
