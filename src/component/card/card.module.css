@@ -6,6 +6,23 @@
   display: flex;
   flex-direction: column;
   background-color: makerWhite;
+  transition: all 500ms;
+}
+
+.card.grid {
+}
+
+.card.list {
+  width: 40%;
+}
+
+.card:hover {
+  background-color: #ece9e6;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
 }
 
 .catecory {
@@ -31,4 +48,35 @@
   margin-left: 0.5em;
   margin-top: 0.5em;
   margin-right: 1em;
+}
+
+.footer {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  margin-left: 0.5em;
+  margin-bottom: 1em;
+}
+
+.avator {
+  width: 2em;
+  height: 2em;
+  margin-right: 0.5em;
+}
+
+.footer_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.user {
+  margin: 0;
+  font-size: 0.8em;
+  margin-bottom: 0.2em;
+}
+
+.date {
+  margin: 0;
+  font-size: 0.4em;
 }

@@ -1,0 +1,55 @@
+@value makerWhite, makerBlack, makerGreen, makerPink from "../../common/colors.css";
+
+.card_detail {
+  border: 1px solid black;
+  width: 100%;
+  /* height: 100vh; */
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  border-top: 1px solid makerBlack;
+  border-bottom: 1px solid makerBlack;
+  margin: 2em;
+}
+
+.input,
+.textarea,
+.btn {
+  font-size: 0.8rem;
+  width: 100%;
+  border: 0;
+  padding: 0.5em;
+  border-right: 1px solid makerBlack;
+  border-bottom: 1px solid makerBlack;
+  background: makerWhite;
+  font-family: "TmoneyRoundWindExtraBold";
+}
+
+.input {
+  flex: 1 1 50%;
+}
+
+.input:focus {
+  outline: 0;
+}
+
+.textarea {
+  flex-basis: 100%;
+}
+
+.btns {
+  display: flex;
+  width: 100%;
+}
+
+.btn {
+  background-color: makerGreen;
+  color: makerWhite;
+  cursor: pointer;
+  padding: 0.5em;
+  font-size: 0.8rem;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}

@@ -6,7 +6,7 @@ const Header = ({ onLogout }) => {
     <div className={styles.header}>
       <h1 className={styles.title}>FRCM</h1>
       {onLogout && (
-        <button className={styles.btn} onClick={onLogout}>
+        <button className={styles.logout} onClick={onLogout}>
           logout
         </button>
       )}

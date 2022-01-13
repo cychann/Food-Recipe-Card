@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+}
+
+.cards {
+  flex: 1 1 50%;
+}
+
+.detail {
+  flex: 1 1 50%;
+}
