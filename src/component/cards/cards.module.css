@@ -1,3 +1,5 @@
+@value makerBlue from "../../common/colors.css";
+
 .cards {
   display: flex;
   flex-wrap: wrap;

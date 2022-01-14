@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cards from "../cards/cards";
+import CardAddForm from "../card_add_form/card_add_form";
 import CardDetail from "../card_detail/card_detail";
 import Detail from "../detail/detail";
 import Header from "../header/header";
@@ -112,7 +113,7 @@ const Maker = ({ authService }) => {
     setDetailCard(card);
   };
 
-  const updateDetailCard = (card) => {
+  const addOrUpdateCard = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
       updated[card.id] = card;
@@ -132,6 +133,9 @@ const Maker = ({ authService }) => {
   return (
     <div className={styles.maker}>
       <Header onLogout={onLogout} />
+      <div className={styles.add_form}>
+        <CardAddForm addOrUpdateCard={addOrUpdateCard} />
+      </div>
       <div className={styles.container}>
         <div className={styles.cards}>
           <Cards
@@ -145,7 +149,7 @@ const Maker = ({ authService }) => {
             <Detail
               cards={cards}
               detailCard={detailCard}
-              updateDetailCard={updateDetailCard}
+              addOrUpdateCard={addOrUpdateCard}
             />
           </div>
         )}

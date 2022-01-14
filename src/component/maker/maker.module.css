@@ -2,6 +2,10 @@
   display: flex;
 }
 
+.add_form {
+  width: 40%;
+}
+
 .cards {
   flex: 1 1 50%;
 }
