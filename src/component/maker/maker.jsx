@@ -121,6 +121,15 @@ const Maker = ({ authService }) => {
     });
   };
 
+  const deleteCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      delete updated[card.id];
+      return updated;
+    });
+    setDetailCard();
+  };
+
   useEffect(() => {}, [cards]);
 
   useEffect(() => {
@@ -150,6 +159,7 @@ const Maker = ({ authService }) => {
               cards={cards}
               detailCard={detailCard}
               addOrUpdateCard={addOrUpdateCard}
+              deleteCard={deleteCard}
             />
           </div>
         )}

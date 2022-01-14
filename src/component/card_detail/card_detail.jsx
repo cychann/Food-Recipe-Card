@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styles from "./card_detail.module.css";
 
-const CardDetail = ({ detailCard, addOrUpdateCard }) => {
+const CardDetail = ({ detailCard, addOrUpdateCard, deleteCard }) => {
   const titleRef = useRef();
   const catecoryRef = useRef();
   const userNameRef = useRef();
@@ -21,6 +21,12 @@ const CardDetail = ({ detailCard, addOrUpdateCard }) => {
       [event.currentTarget.name]: event.currentTarget.value,
     });
   };
+
+  const onDelete = (event) => {
+    event.preventDefault();
+    deleteCard(detailCard);
+  };
+
   return (
     <form className={styles.card_detail}>
       <input
@@ -69,7 +75,9 @@ const CardDetail = ({ detailCard, addOrUpdateCard }) => {
       />
       <div className={styles.btns}>
         <button className={styles.btn}>Image</button>
-        <button className={styles.btn}>Delete</button>
+        <button onClick={onDelete} className={styles.btn}>
+          Delete
+        </button>
       </div>
     </form>
   );
