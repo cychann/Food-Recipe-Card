@@ -1,7 +1,13 @@
 import React, { useRef } from "react";
+import ImageFileInput from "../image_file_input/image_file_input";
 import styles from "./card_detail.module.css";
 
-const CardDetail = ({ detailCard, addOrUpdateCard, deleteCard }) => {
+const CardDetail = ({
+  detailCard,
+  addOrUpdateCard,
+  deleteCard,
+  imageUpload,
+}) => {
   const titleRef = useRef();
   const catecoryRef = useRef();
   const userNameRef = useRef();
@@ -74,7 +80,7 @@ const CardDetail = ({ detailCard, addOrUpdateCard, deleteCard }) => {
         value={order}
       />
       <div className={styles.btns}>
-        <button className={styles.btn}>Image</button>
+        <ImageFileInput imageUpload={imageUpload} />
         <button onClick={onDelete} className={styles.btn}>
           Delete
         </button>

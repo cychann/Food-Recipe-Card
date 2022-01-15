@@ -7,7 +7,7 @@ import Detail from "../detail/detail";
 import Header from "../header/header";
 import styles from "./maker.module.css";
 
-const Maker = ({ authService }) => {
+const Maker = ({ authService, imageUpload }) => {
   const navigate = useNavigate();
 
   const [cards, setCards] = useState({
@@ -22,7 +22,10 @@ const Maker = ({ authService }) => {
         "토마토소스를 붇는다",
         "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
       ],
-      fileURL: "asd.png",
+      foodFileURL: "",
+      foodFileName: "",
+      avatarFileURL: "",
+      avatarFileName: "",
       userName: "최유찬",
       date: "2022/1/13",
     },
@@ -37,7 +40,10 @@ const Maker = ({ authService }) => {
         "토마토소스를 붇는다",
         "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
       ],
-      fileURL: "asd.png",
+      foodFileURL: "",
+      foodFileName: "",
+      avatarFileURL: "",
+      avatarFileName: "",
       userName: "최유찬",
       date: "2022/1/13",
     },
@@ -52,7 +58,10 @@ const Maker = ({ authService }) => {
         "토마토소스를 붇는다",
         "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
       ],
-      fileURL: "asd.png",
+      foodFileURL: "",
+      foodFileName: "",
+      avatarFileURL: "",
+      avatarFileName: "",
       userName: "최유찬",
       date: "2022/1/13",
     },
@@ -67,7 +76,10 @@ const Maker = ({ authService }) => {
         "토마토소스를 붇는다",
         "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
       ],
-      fileURL: "asd.png",
+      foodFileURL: "",
+      foodFileName: "",
+      avatarFileURL: "",
+      avatarFileName: "",
       userName: "최유찬",
       date: "2022/1/13",
     },
@@ -82,7 +94,10 @@ const Maker = ({ authService }) => {
         "토마토소스를 붇는다",
         "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
       ],
-      fileURL: "asd.png",
+      foodFileURL: "",
+      foodFileName: "",
+      avatarFileURL: "",
+      avatarFileName: "",
       userName: "최유찬",
       date: "2022/1/13",
     },
@@ -97,7 +112,10 @@ const Maker = ({ authService }) => {
         "토마토소스를 붇는다",
         "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
       ],
-      fileURL: "asd.png",
+      foodFileURL: "",
+      foodFileName: "",
+      avatarFileURL: "",
+      avatarFileName: "",
       userName: "최유찬",
       date: "2022/1/13",
     },
@@ -143,7 +161,10 @@ const Maker = ({ authService }) => {
     <div className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.add_form}>
-        <CardAddForm addOrUpdateCard={addOrUpdateCard} />
+        <CardAddForm
+          addOrUpdateCard={addOrUpdateCard}
+          imageUpload={imageUpload}
+        />
       </div>
       <div className={styles.container}>
         <div className={styles.cards}>
@@ -160,6 +181,7 @@ const Maker = ({ authService }) => {
               detailCard={detailCard}
               addOrUpdateCard={addOrUpdateCard}
               deleteCard={deleteCard}
+              imageUpload={imageUpload}
             />
           </div>
         )}

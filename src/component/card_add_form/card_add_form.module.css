@@ -46,10 +46,15 @@
   background-color: makerGreen;
   color: makerWhite;
   cursor: pointer;
-  padding: 0.5em;
+  /* padding: 0.5em; */
   font-size: 0.8rem;
 }
 
 .btn:hover {
   opacity: 0.8;
+}
+
+.image_btn {
+  width: 50%;
+  border-right: 1px solid makerBlack;
 }

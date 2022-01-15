@@ -1,13 +1,23 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
+import ImageFileInput from "../image_file_input/image_file_input";
 import styles from "./card_add_form.module.css";
 
-const CardAddForm = ({ addOrUpdateCard }) => {
+const CardAddForm = ({ imageUpload, addOrUpdateCard }) => {
   const titleRef = useRef();
   const catecoryRef = useRef();
   const userNameRef = useRef();
   const dateRef = useRef();
   const preparationsRef = useRef();
   const orderRef = useRef();
+
+  const [foodFile, setFoodFile] = useState({
+    foodFileName: null,
+    foodFileURL: null,
+  });
+  const [avatarFile, setAvatarFile] = useState({
+    avatarFileName: null,
+    avatarFileURL: null,
+  });
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -20,8 +30,27 @@ const CardAddForm = ({ addOrUpdateCard }) => {
       date: dateRef.current.value || "날짜",
       preparations: preparationsRef.current.value || "준비물",
       order: orderRef.current.value || "조리 순서",
+      foodFileName: foodFile.foodFileName || "",
+      foodFileURL: foodFile.foodFileURL || "",
+      avatarFileName: avatarFile.avatarFileName || "",
+      avatarFileURL: avatarFile.avatarFileURL || "",
     };
+    console.log(card);
     addOrUpdateCard(card);
+  };
+
+  const onFoodChange = (file) => {
+    setFoodFile({
+      foodFileName: file.name,
+      foodFileURL: file.url,
+    });
+  };
+
+  const onAvatarChange = (file) => {
+    setAvatarFile({
+      avatarFileName: file.name,
+      avatarFileURL: file.url,
+    });
   };
 
   return (
@@ -66,9 +95,26 @@ const CardAddForm = ({ addOrUpdateCard }) => {
         name="order"
         placeholder="order"
       />
-      <button onClick={onSubmit} className={styles.btn}>
-        Add
-      </button>
+      <div className={styles.btns}>
+        <div className={styles.image_btn}>
+          <ImageFileInput
+            imageUpLoad={imageUpload}
+            onFoodChange={onFoodChange}
+            fileType="food"
+          />
+        </div>
+
+        <div className={styles.image_btn}>
+          <ImageFileInput
+            imageUpLoad={imageUpload}
+            onAvatarChange={onAvatarChange}
+            fileType="avatar"
+          />
+        </div>
+        <button onClick={onSubmit} className={styles.btn}>
+          Add
+        </button>
+      </div>
     </form>
   );
 };
