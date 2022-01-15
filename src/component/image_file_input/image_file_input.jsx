@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./image_file_input.module.css";
 
 const ImageFileInput = ({
@@ -8,6 +8,8 @@ const ImageFileInput = ({
   onAvatarChange,
   fileType,
 }) => {
+  const [loading, setLodaing] = useState(false);
+
   const inputRef = useRef();
 
   const onClick = (event) => {
@@ -16,9 +18,10 @@ const ImageFileInput = ({
   };
 
   const onChange = async (event) => {
+    setLodaing(true);
     const type = event.target.name;
     const uploaded = await imageUpLoad.upload(event.target.files[0]);
-    console.log(type);
+    setLodaing(false);
 
     switch (type) {
       case "food":
@@ -37,8 +40,6 @@ const ImageFileInput = ({
     }
   };
 
-  // input은 1개인데 어떻게 처리할거냐... change를 2개를 만드는게 아니라 인자로 전달해서 ? : 문법 써야할듯?
-
   return (
     <div className={styles.container}>
       <input
@@ -49,9 +50,21 @@ const ImageFileInput = ({
         ref={inputRef}
         onChange={onChange}
       />
-      <button className={styles.btn} onClick={onClick}>
-        {name || fileType}
-      </button>
+      {!loading && (
+        <button
+          className={`${styles.btn} ${
+            name
+              ? fileType === "food"
+                ? styles.orange
+                : styles.pink
+              : styles.grey
+          }`}
+          onClick={onClick}
+        >
+          {name || fileType}
+        </button>
+      )}
+      {loading && <div className={styles.loading}></div>}
     </div>
   );
 };

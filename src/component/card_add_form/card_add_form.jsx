@@ -101,6 +101,7 @@ const CardAddForm = ({ imageUpload, addOrUpdateCard }) => {
             imageUpLoad={imageUpload}
             onFoodChange={onFoodChange}
             fileType="food"
+            name={foodFile.foodFileName}
           />
         </div>
 
@@ -109,6 +110,7 @@ const CardAddForm = ({ imageUpload, addOrUpdateCard }) => {
             imageUpLoad={imageUpload}
             onAvatarChange={onAvatarChange}
             fileType="avatar"
+            name={avatarFile.avatarFileName}
           />
         </div>
         <button onClick={onSubmit} className={styles.btn}>

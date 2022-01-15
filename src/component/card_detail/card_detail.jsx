@@ -101,6 +101,7 @@ const CardDetail = ({
             imageUpLoad={imageUpload}
             onFoodChange={onFoodChange}
             fileType="food"
+            name={detailCard.foodFileName}
           />
         </div>
 
@@ -109,6 +110,7 @@ const CardDetail = ({
             imageUpLoad={imageUpload}
             onAvatarChange={onAvatarChange}
             fileType="avatar"
+            name={detailCard.avatarFileName}
           />
         </div>
         <button onClick={onDelete} className={styles.btn}>
