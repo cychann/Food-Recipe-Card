@@ -33,6 +33,22 @@ const CardDetail = ({
     deleteCard(detailCard);
   };
 
+  const onFoodChange = (file) => {
+    addOrUpdateCard({
+      ...detailCard,
+      foodFileName: file.name,
+      foodFileURL: file.url,
+    });
+  };
+
+  const onAvatarChange = (file) => {
+    addOrUpdateCard({
+      ...detailCard,
+      avatarFileName: file.name,
+      avatarFileURL: file.url,
+    });
+  };
+
   return (
     <form className={styles.card_detail}>
       <input
@@ -80,7 +96,21 @@ const CardDetail = ({
         value={order}
       />
       <div className={styles.btns}>
-        <ImageFileInput imageUpload={imageUpload} />
+        <div className={styles.image_btn}>
+          <ImageFileInput
+            imageUpLoad={imageUpload}
+            onFoodChange={onFoodChange}
+            fileType="food"
+          />
+        </div>
+
+        <div className={styles.image_btn}>
+          <ImageFileInput
+            imageUpLoad={imageUpload}
+            onAvatarChange={onAvatarChange}
+            fileType="avatar"
+          />
+        </div>
         <button onClick={onDelete} className={styles.btn}>
           Delete
         </button>
