@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Cards from "../cards/cards";
 import CardAddForm from "../card_add_form/card_add_form";
-import CardDetail from "../card_detail/card_detail";
 import Detail from "../detail/detail";
 import Header from "../header/header";
 import styles from "./maker.module.css";
@@ -161,11 +160,13 @@ const Maker = ({ authService, imageUpload }) => {
     <div className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.add_form}>
+        <p className={styles.add_comment}>레시피를 만들어보세요!</p>
         <CardAddForm
           addOrUpdateCard={addOrUpdateCard}
           imageUpload={imageUpload}
         />
       </div>
+
       <div className={styles.container}>
         <div className={styles.cards}>
           <Cards

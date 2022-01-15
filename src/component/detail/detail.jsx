@@ -1,4 +1,5 @@
 import React from "react";
+import CardAddPreview from "../card_add_preview/card_add_preview";
 import CardDetail from "../card_detail/card_detail";
 
 const Detail = ({

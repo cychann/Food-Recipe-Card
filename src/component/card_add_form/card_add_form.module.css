@@ -1,5 +1,11 @@
 @value makerWhite, makerBlack, makerGreen, makerPink from "../../common/colors.css";
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .form {
   border: 1px solid black;
   width: 100%;

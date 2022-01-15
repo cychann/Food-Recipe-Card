@@ -3,7 +3,16 @@
 }
 
 .add_form {
-  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 5em;
+}
+
+.add_comment {
+  font-size: 2em;
 }
 
 .cards {
