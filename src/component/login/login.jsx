@@ -11,7 +11,10 @@ const Login = ({ authService }) => {
   };
 
   const goToMaker = (user) => {
-    navigate("maker", user);
+    navigate({
+      pathname: "maker",
+      state: { id: user.userId },
+    });
   };
 
   useEffect(() => {

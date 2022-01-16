@@ -1,125 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Cards from "../cards/cards";
 import CardAddForm from "../card_add_form/card_add_form";
 import Detail from "../detail/detail";
 import Header from "../header/header";
 import styles from "./maker.module.css";
 
-const Maker = ({ authService, imageUpload }) => {
+const Maker = ({ authService, imageUpload, cardRepository }) => {
   const navigate = useNavigate();
+  const navigateState = useLocation().state;
 
-  const [cards, setCards] = useState({
-    1: {
-      id: "1",
-      title: "쉽게 만드는 로제파스타!",
-      catecory: "양식",
-      preparations: ["파스타면", "생크림", "토마토소스"],
-      order: [
-        "면을 삶는다",
-        "면을 후라이팬에 옮긴다",
-        "토마토소스를 붇는다",
-        "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
-      ],
-      foodFileURL: "",
-      foodFileName: "",
-      avatarFileURL: "",
-      avatarFileName: "",
-      userName: "최유찬",
-      date: "2022/1/13",
-    },
-    2: {
-      id: "2",
-      title: "쉽게 만드는 로제파스타",
-      catecory: "양식",
-      preparations: ["파스타면", "생크림", "토마토소스"],
-      order: [
-        "면을 삶는다",
-        "면을 후라이팬에 옮긴다",
-        "토마토소스를 붇는다",
-        "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
-      ],
-      foodFileURL: "",
-      foodFileName: "",
-      avatarFileURL: "",
-      avatarFileName: "",
-      userName: "최유찬",
-      date: "2022/1/13",
-    },
-    3: {
-      id: "3",
-      title: "쉽게 만드는 로제파스타ㅜㅜ",
-      catecory: "양식",
-      preparations: ["파스타면", "생크림", "토마토소스"],
-      order: [
-        "면을 삶는다",
-        "면을 후라이팬에 옮긴다",
-        "토마토소스를 붇는다",
-        "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
-      ],
-      foodFileURL: "",
-      foodFileName: "",
-      avatarFileURL: "",
-      avatarFileName: "",
-      userName: "최유찬",
-      date: "2022/1/13",
-    },
-    4: {
-      id: "4",
-      title: "쉽게 만드는 로제파스타ㅎㅎ",
-      catecory: "양식",
-      preparations: ["파스타면", "생크림", "토마토소스"],
-      order: [
-        "면을 삶는다",
-        "면을 후라이팬에 옮긴다",
-        "토마토소스를 붇는다",
-        "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
-      ],
-      foodFileURL: "",
-      foodFileName: "",
-      avatarFileURL: "",
-      avatarFileName: "",
-      userName: "최유찬",
-      date: "2022/1/13",
-    },
-    5: {
-      id: "5",
-      title: "쉽게 만드는 로제파스타;;",
-      catecory: "양식",
-      preparations: ["파스타면", "생크림", "토마토소스"],
-      order: [
-        "면을 삶는다",
-        "면을 후라이팬에 옮긴다",
-        "토마토소스를 붇는다",
-        "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
-      ],
-      foodFileURL: "",
-      foodFileName: "",
-      avatarFileURL: "",
-      avatarFileName: "",
-      userName: "최유찬",
-      date: "2022/1/13",
-    },
-    6: {
-      id: "6",
-      title: "쉽게 만드는 로제파스타><",
-      catecory: "양식",
-      preparations: ["파스타면", "생크림", "토마토소스"],
-      order: [
-        "면을 삶는다",
-        "면을 후라이팬에 옮긴다",
-        "토마토소스를 붇는다",
-        "면수를 넣고 1분 정도 저어주다가 생크림을 넣어준다",
-      ],
-      foodFileURL: "",
-      foodFileName: "",
-      avatarFileURL: "",
-      avatarFileName: "",
-      userName: "최유찬",
-      date: "2022/1/13",
-    },
-  });
-
+  const [cards, setCards] = useState({});
+  const [userId, setUserId] = useState(navigateState && navigateState.id);
   const [detailCard, setDetailCard] = useState();
 
   const onLogout = () => {
@@ -136,6 +28,7 @@ const Maker = ({ authService, imageUpload }) => {
       updated[card.id] = card;
       return updated;
     });
+    cardRepository.saveCard(userId, card);
   };
 
   const deleteCard = (card) => {
@@ -145,13 +38,16 @@ const Maker = ({ authService, imageUpload }) => {
       return updated;
     });
     setDetailCard();
+    cardRepository.removeCard(userId, card);
   };
 
   useEffect(() => {}, [cards]);
 
   useEffect(() => {
     authService.onAuthChange((user) => {
-      if (!user) {
+      if (user) {
+        setUserId(user.uid);
+      } else {
         navigate("/");
       }
     });
