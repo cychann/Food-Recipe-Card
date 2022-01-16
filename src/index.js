@@ -9,7 +9,7 @@ import CardRepository from "./service/card_repository";
 
 const authService = new AuthService(firebasApp);
 const imageUpload = new ImageUpload();
-const cardRepository = new CardRepository();
+const cardRepository = new CardRepository(firebasApp);
 ReactDOM.render(
   <React.StrictMode>
     <App

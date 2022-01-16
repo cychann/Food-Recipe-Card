@@ -41,7 +41,18 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
     cardRepository.removeCard(userId, card);
   };
 
-  useEffect(() => {}, [cards]);
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+
+    const stopRead = cardRepository.readCard(userId, (cards) => {
+      setCards(cards);
+    });
+    return () => {
+      stopRead();
+    }; // 컴포넌트가 언마운트 되었을 때 작성할 부분을 여기에 작성한다. 주로 리소스를 정리하고 메모리를 정리하는 일을 함
+  }, [userId]);
 
   useEffect(() => {
     authService.onAuthChange((user) => {
