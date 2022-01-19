@@ -1,0 +1,45 @@
+@value makerGrey,  makerWhite, makerBlack from "../../common/colors.css";
+
+.container {
+  padding: 0 7rem;
+}
+
+.intro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 8rem;
+}
+
+.intro_left {
+  width: 50%;
+}
+
+.intro_title {
+  font-size: 3em;
+  font-weight: 700;
+}
+
+.intro_description {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+
+.support {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sup_title {
+  font-size: 3rem;
+}
+
+.sup_cards {
+  display: flex;
+}
+
+.sup_card {
+  border: 1px solid black;
+}

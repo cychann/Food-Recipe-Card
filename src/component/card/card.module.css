@@ -1,15 +1,17 @@
-@value makerWhite from "../../common/colors.css";
+@value makerWhite, makerLightGreen from "../../common/colors.css";
 
 .card {
-  border-radius: 1em;
+  /* border-radius: 1em; */
   margin: 2em;
   display: flex;
   flex-direction: column;
-  background-color: makerWhite;
+  background-color: #ece9e6;
   transition: all 500ms;
 }
 
 .card.grid {
+  width: 300px;
+  height: 400px;
 }
 
 .card.list {
@@ -17,7 +19,7 @@
 }
 
 .card:hover {
-  background-color: #ece9e6;
+  background-color: #d1cdca;
 }
 
 .body {
@@ -27,20 +29,19 @@
 
 .catecory {
   align-self: flex-start;
-  background: linear-gradient(to bottom, #ffd194, #d1913c);
+  background: makerLightGreen;
   color: makerWhite;
-  margin-left: 1.5em;
+  margin-left: 0.7em;
   margin-bottom: 0;
-  padding: 0.3em;
+  padding: 0.5em 0.7em;
   text-align: center;
-  border-radius: 0.5em;
-  font-size: 0.8em;
+  border-radius: 2em;
+  font-size: 0.7em;
 }
 
 .img {
   width: 100%;
-  height: 10em;
-  border-radius: 1em;
+  height: 300px;
 }
 
 .title {

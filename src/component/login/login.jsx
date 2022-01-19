@@ -5,9 +5,11 @@ import styles from "./login.module.css";
 
 const Login = ({ authService }) => {
   const navigate = useNavigate();
+
   const onLogin = (event) => {
-    const loginCompanyName = event.currentTarget.innerHTML;
-    authService.login(loginCompanyName).then(console.log);
+    const loginText = event.currentTarget.innerHTML;
+    const loginCompanyName = loginText.slice(11);
+    authService.login(loginCompanyName);
   };
 
   const goToMaker = (user) => {
@@ -19,24 +21,24 @@ const Login = ({ authService }) => {
 
   useEffect(() => {
     authService.onAuthChange((user) => {
+      console.log(user);
       user && goToMaker(user);
     }, []);
   });
   return (
     <>
-      <Header />
       <div className={styles.login}>
-        <h1 className={styles.title}>로그인하기</h1>
+        {/* <h1 className={styles.title}>Login</h1>
         <div className={styles.description}>
-          Google 혹은 Facebook 계정으로 로그인
-        </div>
+          Login with your Google or Facebook account
+        </div> */}
         <div className={`${styles.login_container} ${styles.google}`}>
           <img className={styles.logo} src="images/google.png" alt="" />
           <button
             className={`${styles.button} ${styles.google}`}
             onClick={onLogin}
           >
-            Google
+            Login with Google
           </button>
         </div>
         <div className={`${styles.login_container} ${styles.facebook}`}>
@@ -45,7 +47,7 @@ const Login = ({ authService }) => {
             className={`${styles.button} ${styles.facebook}`}
             onClick={onLogin}
           >
-            Facebook
+            Login with Facebook
           </button>
         </div>
       </div>

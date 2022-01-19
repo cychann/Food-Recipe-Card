@@ -42,6 +42,7 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
   };
 
   useEffect(() => {
+    console.log(userId);
     if (!userId) {
       return;
     }

@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import styles from "./app.module.css";
 import Login from "./component/login/login";
+import Main from "./component/main/main";
 import Maker from "./component/maker/maker";
 
 function App({ authService, imageUpload, cardRepository }) {
@@ -8,7 +9,7 @@ function App({ authService, imageUpload, cardRepository }) {
     <div className={styles.app}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login authService={authService} />} />
+          <Route path="/" element={<Main authService={authService} />} />
           <Route
             path="maker"
             element={
