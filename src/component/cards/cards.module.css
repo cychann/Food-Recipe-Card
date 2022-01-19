@@ -1,6 +1,27 @@
-@value makerBlue from "../../common/colors.css";
+@value makerBlue, makerGrey from "../../common/colors.css";
+
+.container {
+  padding: 0 15rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 8em;
+  color: makerGrey;
+}
+
+.header_right {
+  display: flex;
+}
+
+.lastest {
+  margin-right: 1em;
+}
 
 .cards {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }

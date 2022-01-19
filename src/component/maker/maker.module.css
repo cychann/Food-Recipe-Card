@@ -1,7 +1,6 @@
 .container {
   display: flex;
   height: 50em;
-  overflow-y: auto;
 }
 
 .add_form {
