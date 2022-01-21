@@ -1,9 +1,12 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CardAddPreview from "../card_add_preview/card_add_preview";
 import ImageFileInput from "../image_file_input/image_file_input";
 import styles from "./card_add_form.module.css";
 
-const CardAddForm = ({ imageUpload, addOrUpdateCard }) => {
+const CardAddForm = ({ imageUpload }) => {
+  const navigate = useNavigate();
+
   const titleRef = useRef();
   const catecoryRef = useRef();
   const userNameRef = useRef();
@@ -59,7 +62,8 @@ const CardAddForm = ({ imageUpload, addOrUpdateCard }) => {
       avatarFileName: avatarFile.avatarFileName || "",
       avatarFileURL: avatarFile.avatarFileURL || "",
     };
-    addOrUpdateCard(card);
+
+    navigate("/maker", { state: card });
   };
 
   const onFoodChange = (file) => {

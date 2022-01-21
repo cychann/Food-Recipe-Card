@@ -1,17 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 import Cards from "../cards/cards";
 import CardAddForm from "../card_add_form/card_add_form";
 import Detail from "../detail/detail";
 import Header from "../header/header";
 import styles from "./maker.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 const Maker = ({ authService, imageUpload, cardRepository }) => {
   const navigate = useNavigate();
-  const navigateState = useLocation().state;
-
+  const location = useLocation();
+  const navigateState = location.state;
+  const navigateKey = location.key;
+  // console.log(navigateKey);
+  // urlKey !== navigateKey && navigateKey
   const [cards, setCards] = useState({});
+  const [urlKey, setUrlKey] = useState(navigateKey && navigateKey);
   const [userId, setUserId] = useState(navigateState && navigateState.id);
+  const [addCard, setAddCard] = useState({});
   const [detailCard, setDetailCard] = useState();
 
   const onLogout = () => {
@@ -28,6 +41,7 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
       updated[card.id] = card;
       return updated;
     });
+    // console.log(userId, card);
     cardRepository.saveCard(userId, card);
   };
 
@@ -41,8 +55,11 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
     cardRepository.removeCard(userId, card);
   };
 
+  const goToAddForm = () => {
+    navigate("/post");
+  };
+
   useEffect(() => {
-    console.log(userId);
     if (!userId) {
       return;
     }
@@ -56,6 +73,19 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
   }, [userId]);
 
   useEffect(() => {
+    if (!addCard) {
+      return;
+    }
+    addOrUpdateCard(addCard);
+  }, [addCard]);
+
+  useEffect(() => {
+    console.log(urlKey);
+  }, [urlKey]);
+
+  useEffect(() => {
+    console.log(userId);
+
     authService.onAuthChange((user) => {
       if (user) {
         setUserId(user.uid);
@@ -63,16 +93,15 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
         navigate("/");
       }
     });
+    if (navigateState && isNaN(userId)) {
+      setAddCard(navigateState);
+    }
   });
   return (
     <div className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.add_form}>
         <p className={styles.add_comment}>레시피를 만들어보세요!</p>
-        <CardAddForm
-          addOrUpdateCard={addOrUpdateCard}
-          imageUpload={imageUpload}
-        />
       </div>
 
       <div className={styles.container}>
@@ -95,6 +124,12 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
           </div>
         )}
       </div>
+      <div className={styles.write_recipe} onClick={goToAddForm}>
+        <FontAwesomeIcon icon={faPen} className={styles.write_icon} />
+        <p className={styles.wrtie_span}>레시피 등록</p>
+      </div>
+
+      <Outlet />
     </div>
   );
 };
