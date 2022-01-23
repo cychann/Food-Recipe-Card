@@ -1,13 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Cards from "../cards/cards";
-import CardAddForm from "../card_add_form/card_add_form";
 import Detail from "../detail/detail";
 import Header from "../header/header";
 import styles from "./maker.module.css";
@@ -19,13 +12,15 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
   const location = useLocation();
   const navigateState = location.state;
   const navigateKey = location.key;
-  // console.log(navigateKey);
-  // urlKey !== navigateKey && navigateKey
   const [cards, setCards] = useState({});
   const [urlKey, setUrlKey] = useState(navigateKey && navigateKey);
   const [userId, setUserId] = useState(navigateState && navigateState.id);
   const [addCard, setAddCard] = useState({});
   const [detailCard, setDetailCard] = useState();
+
+  const goToMaker = () => {
+    setDetailCard(null);
+  };
 
   const onLogout = () => {
     authService.logout();
@@ -98,39 +93,39 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
     }
   });
   return (
-    <div className={styles.maker}>
-      <Header onLogout={onLogout} />
-      <div className={styles.add_form}>
-        <p className={styles.add_comment}>레시피를 만들어보세요!</p>
-      </div>
-
-      <div className={styles.container}>
-        <div className={styles.cards}>
-          <Cards
+    <>
+      {detailCard ? (
+        <div className={styles.detail}>
+          <button onClick={goToMaker}>뒤로가기!</button>
+          <Detail
             cards={cards}
-            onCardClick={onCardClick}
-            display={detailCard ? "list" : "grid"}
+            detailCard={detailCard}
+            addOrUpdateCard={addOrUpdateCard}
+            deleteCard={deleteCard}
+            imageUpload={imageUpload}
           />
         </div>
-        {detailCard && (
-          <div className={styles.detail}>
-            <Detail
-              cards={cards}
-              detailCard={detailCard}
-              addOrUpdateCard={addOrUpdateCard}
-              deleteCard={deleteCard}
-              imageUpload={imageUpload}
-            />
+      ) : (
+        <div className={styles.maker}>
+          <Header onLogout={onLogout} />
+          <div className={styles.add_form}>
+            <p className={styles.add_comment}>레시피를 만들어보세요!</p>
           </div>
-        )}
-      </div>
-      <div className={styles.write_recipe} onClick={goToAddForm}>
-        <FontAwesomeIcon icon={faPen} className={styles.write_icon} />
-        <p className={styles.wrtie_span}>레시피 등록</p>
-      </div>
 
-      <Outlet />
-    </div>
+          <div className={styles.container}>
+            <div className={styles.cards}>
+              <Cards cards={cards} onCardClick={onCardClick} />
+            </div>
+          </div>
+          <div className={styles.write_recipe} onClick={goToAddForm}>
+            <FontAwesomeIcon icon={faPen} className={styles.write_icon} />
+            <p className={styles.wrtie_span}>레시피 등록</p>
+          </div>
+
+          <Outlet />
+        </div>
+      )}
+    </>
   );
 };
 

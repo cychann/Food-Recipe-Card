@@ -6,17 +6,13 @@ import { faHeart } from "@fortawesome/free-regular-svg-icons";
 const FOOD_DEFAULT_IMAGE = "/images/food.png";
 const AVATAR_DEFAULT_IMAGE = "/images/cooker.png";
 
-const Card = ({ card, onCardClick, display }) => {
-  const displayType = display === "list" ? styles.list : styles.grid;
+const Card = ({ card, onCardClick }) => {
   const { title, catecory, userName, date, foodFileURL, avatarFileURL } = card;
   const foodURL = foodFileURL || FOOD_DEFAULT_IMAGE;
   const avatarURL = avatarFileURL || AVATAR_DEFAULT_IMAGE;
 
   return (
-    <div
-      className={`${styles.card} ${displayType}`}
-      onClick={() => onCardClick(card)}
-    >
+    <div className={styles.card} onClick={() => onCardClick(card)}>
       <img className={styles.img} src={foodURL} alt="" />
       <div className={styles.body}>
         <p className={styles.catecory}>{catecory}</p>

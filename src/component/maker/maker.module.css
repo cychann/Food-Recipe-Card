@@ -1,4 +1,4 @@
-@value makerOrange from "../../common/colors.css";
+@value makerOrange, makerLightGrey from "../../common/colors.css";
 
 .container {
   display: flex;
@@ -18,12 +18,9 @@
   font-size: 2em;
 }
 
-.cards {
-  flex: 1 1 50%;
-}
-
 .detail {
-  flex: 1 1 50%;
+  height: 100%;
+  background-color: makerLightGrey;
 }
 
 .write_recipe {
