@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Cards from "../cards/cards";
-import CardAddForm from "../card_add_form/card_add_form";
 import Detail from "../detail/detail";
 import Header from "../header/header";
 import styles from "./maker.module.css";
@@ -10,11 +9,18 @@ import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const Maker = ({ authService, imageUpload, cardRepository }) => {
   const navigate = useNavigate();
-  const navigateState = useLocation().state;
-
+  const location = useLocation();
+  const navigateState = location.state;
+  const navigateKey = location.key;
   const [cards, setCards] = useState({});
+  const [urlKey, setUrlKey] = useState(navigateKey && navigateKey);
   const [userId, setUserId] = useState(navigateState && navigateState.id);
+  const [addCard, setAddCard] = useState({});
   const [detailCard, setDetailCard] = useState();
+
+  const goToMaker = () => {
+    setDetailCard(null);
+  };
 
   const onLogout = () => {
     authService.logout();
@@ -30,6 +36,7 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
       updated[card.id] = card;
       return updated;
     });
+    // console.log(userId, card);
     cardRepository.saveCard(userId, card);
   };
 
@@ -43,8 +50,11 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
     cardRepository.removeCard(userId, card);
   };
 
+  const goToAddForm = () => {
+    navigate("/post");
+  };
+
   useEffect(() => {
-    console.log(userId);
     if (!userId) {
       return;
     }
@@ -58,6 +68,19 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
   }, [userId]);
 
   useEffect(() => {
+    if (!addCard) {
+      return;
+    }
+    addOrUpdateCard(addCard);
+  }, [addCard]);
+
+  useEffect(() => {
+    console.log(urlKey);
+  }, [urlKey]);
+
+  useEffect(() => {
+    console.log(userId);
+
     authService.onAuthChange((user) => {
       if (user) {
         setUserId(user.uid);
@@ -65,6 +88,9 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
         navigate("/");
       }
     });
+    if (navigateState && isNaN(userId)) {
+      setAddCard(navigateState);
+    }
   });
   return (
     <div className={styles.maker}>
@@ -81,8 +107,10 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
         <div className={styles.cards}>
           <Cards
             cards={cards}
-            onCardClick={onCardClick}
-            display={detailCard ? "list" : "grid"}
+            detailCard={detailCard}
+            addOrUpdateCard={addOrUpdateCard}
+            deleteCard={deleteCard}
+            imageUpload={imageUpload}
           />
         </div>
         {detailCard && (

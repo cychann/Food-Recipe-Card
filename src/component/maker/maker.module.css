@@ -1,3 +1,5 @@
+@value makerOrange, makerLightGrey from "../../common/colors.css";
+
 .container {
   display: flex;
   height: 50em;
@@ -18,12 +20,29 @@
   font-size: 2em;
 }
 
-.cards {
-  flex: 1 1 50%;
+.detail {
+  height: 100%;
+  background-color: makerLightGrey;
 }
 
-.detail {
-  flex: 1 1 50%;
+.write_recipe {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  right: 60px;
+  bottom: 60px;
+  border: 3px solid makerOrange;
+  border-radius: 2em;
+  padding: 1em 2em;
+}
+
+.write_icon {
+  margin-right: 1em;
+}
+
+.wrtie_span {
+  font-weight: 700;
 }
 
 .xmark {
