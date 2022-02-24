@@ -1,6 +1,10 @@
 @value makerGrey,  makerWhite, makerBlack from "../../common/colors.css";
 
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 0 7rem;
 }
 
@@ -42,4 +46,14 @@
 
 .sup_card {
   border: 1px solid black;
+}
+
+.thumbnail_container {
+  display: flex;
+  justify-content: center;
+}
+
+.thumbnail {
+  width: 40rem;
+  height: 20rem;
 }

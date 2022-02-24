@@ -6,16 +6,20 @@ const IntroPage = ({ authService }) => (
   <div className={styles.container}>
     <section className={styles.intro}>
       <div className={styles.intro_left}>
-        <p className={styles.intro_title}>Food Recipe Card Apllication</p>
+        <p className={styles.intro_title}>Food Recipe Card</p>
         <p className={styles.intro_description}>
-          이 웹사이트에서 자신만의 음식 레시피를 작성하세요! 원하는 음식의
-          카테고리, 조리법, 재료를 레시피 카드에 작성해 실시간으로 저장하고
-          관리하세요
+          자신만의 음식 레시피를 작성하세요! 원하는 음식의 카테고리, 조리법,
+          재료를 레시피 카드에 작성해 실시간으로 저장하고 관리하세요
         </p>
         <Login authService={authService} />
       </div>
       <img src="images/avator.png" alt="" />
     </section>
+    <div className={styles.thumbnail_container}>
+      <img src="images/thum_img1.png" alt="" className={styles.thumbnail} />
+      <img src="images/thum_img2.png" alt="" className={styles.thumbnail} />
+    </div>
+
     {/* <section className={styles.support}>
       <h1 className={styles.sup_title}>Support</h1>
       <div className={styles.sup_cards}>
