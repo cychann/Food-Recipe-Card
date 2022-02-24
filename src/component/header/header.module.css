@@ -1,38 +1,11 @@
 @value makerWhite, makerBlack, makerLightGreen from "../../common/colors.css";
 
-.header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  background-color: makerLightGreen;
-  color: makerBlack;
-  transition: all 200ms ease-in;
-}
-
-.header:hover {
-  background-color: makerBlack;
-  color: makerWhite;
-}
-
-.title {
-  font-size: 0.8em;
-  font-weight: 800;
-}
-
-.arrow {
-  width: 11px;
-  height: 11px;
-  margin-left: 7px;
-  display: flex;
-  justify-content: center;
-}
-
 .logout {
-  background: linear-gradient(to right, #8e2de2, #4a00e0);
   border: 0;
   border-radius: 0.5em;
   padding: 0.5em;
-  color: makerWhite;
+  color: black;
+  background-color: rgb(135, 136, 133);
   font-size: 1.2em;
+  margin: 1rem;
 }

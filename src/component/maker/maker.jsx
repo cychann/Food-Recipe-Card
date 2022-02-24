@@ -5,6 +5,8 @@ import CardAddForm from "../card_add_form/card_add_form";
 import Detail from "../detail/detail";
 import Header from "../header/header";
 import styles from "./maker.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 const Maker = ({ authService, imageUpload, cardRepository }) => {
   const navigate = useNavigate();
@@ -68,7 +70,7 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
     <div className={styles.maker}>
       <Header onLogout={onLogout} />
       <div className={styles.add_form}>
-        <p className={styles.add_comment}>레시피를 만들어보세요!</p>
+        <p className={styles.add_comment}>레시피를 작성하세요!</p>
         <CardAddForm
           addOrUpdateCard={addOrUpdateCard}
           imageUpload={imageUpload}
@@ -85,6 +87,14 @@ const Maker = ({ authService, imageUpload, cardRepository }) => {
         </div>
         {detailCard && (
           <div className={styles.detail}>
+            <img
+              src="images/xmark.svg"
+              alt=""
+              onClick={() => {
+                setDetailCard(!detailCard);
+              }}
+              className={styles.xmark}
+            />
             <Detail
               cards={cards}
               detailCard={detailCard}
